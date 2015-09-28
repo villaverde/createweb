@@ -12,6 +12,9 @@ def create_web(options):
 	if not options.domain:
 		print('No se especifico ningun dominio')
 		return
+	if not options.project:
+		print("No se especifico ningun nombre de projecto")
+		return
 
 def main():
 	parser = optparse.OptionParser()
