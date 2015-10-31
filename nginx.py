@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-#Scrip para añadir webs usando ngix y python
+#Script para añadir archivo de configuración ngix para aplicaciones python o php
 #
 
 
@@ -11,7 +11,7 @@
 #funcion que genera archivo nginx en función de los parámetros indicados
 #parametros: domain = dominio del proyecto; project = nombre del proyecto
 #devuelve un archivo de configuración de nginx 
-def nginx_python(domain, project, project_type):
+def nginx_conf(domain, project, project_type):
 	#parametros de configuración
 	path = ''
 	if project_type =='python':
@@ -29,4 +29,4 @@ def nginx_python(domain, project, project_type):
 project = 'juanillo'
 domain = 'http://carapillo.com'
 project_type = 'python'
-nginx_python(domain, project, project_type)
+nginx_conf(domain, project, project_type)
