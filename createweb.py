@@ -6,24 +6,22 @@
 #
 
 import optparse
-import common
+import sys
+from nginx import nginx_conf
 
-def create_web(options):
-	if not options.domain:
-		print('No se especifico ningun dominio')
-		return
-	if not options.project:
-		print("No se especifico ningun nombre de projecto")
-		return
+
 
 def main():
-	parser = optparse.OptionParser()
-	parser.add_option('-d', '--domain', help='Nombre del dominio')
-	parser.add_option('-p', '--project', help='Nombre del proyecto')
-	parser.add_option('-t', '--type', help='Tipo de alojamiento. Por ahora solo doy soporte a django')
-	options = common.parser(parser)
-
-	create_web(options)
+    domain = raw_input("Dominio (Sin www): ")
+    project = raw_input("Nombre del proyecto: ")
+    project_type = raw_input("Tipo de proyecto\n"
+                             "--> Python\n"
+                             "--> PHP\n"
+                             "Pon uno de los tipos permitidos: ")
+    dns = raw_input("Quieres añadir el dominio al servidores de dns (BIND)?\n"
+                    "si\n"
+                    "no\n"
+                    ": ")
+    nginx_conf(domain, project, project_type)
 
 if __name__ == '__main__':
-	main()
