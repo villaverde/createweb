@@ -13,15 +13,16 @@
 #devuelve un archivo de configuración de supervisor
 def supervisor_conf(project):
 	#parametros de configuración
-	path = ''
-	fFile = open("supervisor_template.conf", "r")
-	fFile_new = open(path+project+".conf", "w")
-	content = fFile.read()
-	content = content.replace('{project}', project)
-	fFile_new.write(content)
+    path = ''
+    fFile = open("templates/supervisor/supervisor_template.conf", "r")
+    fFile_new = open(path+project+".conf", "w")
+    content = fFile.read()
+    content = content.replace('{project}', project)
+    fFile_new.write(content)
+    print "Creada la configuracion de supervisor\n"
 
 
 #parametros de configuración
-project = 'juanillo'
+#project = 'juanillo'
 
-supervisor_conf(project)
+#supervisor_conf(project)
