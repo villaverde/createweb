@@ -4,29 +4,32 @@
 #
 #Script para añadir archivo de configuración ngix para aplicaciones python o php
 #
+import os
+pathConfNginx="nginxconf/"
 
+#Funcionar principal que se encarg de la configuracion de ngix
+def nginx_main(domain,project,project_type):
 
-
+    dir = os.path.dirname(pathConfNginx)
+    try:
+        os.stat(dir)
+    except:
+        print "Error el direcotrio %s no exixta\nNo se seguira creando nada" % (pathConfNginx)
+        return
+    nginx_conf(domain, project, project_type)
 
 #funcion que genera archivo nginx en función de los parámetros indicados
 #parametros: domain = dominio del proyecto; project = nombre del proyecto
 #devuelve un archivo de configuración de nginx 
 def nginx_conf(domain, project, project_type):
 	#parametros de configuración
-	path = ''
-	if project_type =='python':
-		fFile = open("nginx_python_template.conf", "r")
-	elif project_type == 'php':
-		fFile = open("nginx_php_template.conf", "r")
-	fFile_new = open(path+project+".conf", "w")
-	content = fFile.read()
-	content = content.replace('{project}', project)
-	content = content.replace('{domain}', domain)
-	fFile_new.write(content)
-
-
-#parametros de configuración
-project = 'juanillo'
-domain = 'http://carapillo.com'
-project_type = 'python'
-nginx_conf(domain, project, project_type)
+    if project_type =='python':
+        fFile = open("nginx_python_template.conf", "r")
+    elif project_type == 'php':
+        fFile = open("nginx_php_template.conf", "r")
+    fFile_new = open(pathConfNginx+project+".conf", "w")
+    content = fFile.read()
+    content = content.replace('{project}', project)
+    content = content.replace('{domain}', domain)
+    fFile_new.write(content)
+    print "Creada la configuracion de nginx"

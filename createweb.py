@@ -7,7 +7,7 @@
 
 import optparse
 import sys
-from nginx import nginx_conf
+from nginx import nginx_main
 
 
 
@@ -21,7 +21,6 @@ def main():
     while(project==""):
         project = raw_input("Nombre del proyecto: ")
     while estrue:
-        print project_type
         project_type = raw_input("Tipo de proyecto\n"
                                  "--> python\n"
                                  "--> php\n"
@@ -30,11 +29,9 @@ def main():
             estrue = False
         if project_type =="python":
             estrue = False
-    dns = raw_input("Quieres añadir el dominio al servidores de dns (BIND)?\n"
-                    "si\n"
-                    "no\n"
-                    ": ")
-    nginx_conf(domain, project, project_type)
+
+    nginx_main(domain, project, project_type)
+    #nginx_conf(domain, project, project_type)
 
 if __name__ == '__main__':
     main()
