@@ -24,9 +24,9 @@ def nginx_main(domain,project,project_type):
 def nginx_conf(domain, project, project_type):
 	#parametros de configuración
     if project_type =='python':
-        fFile = open("nginx_python_template.conf", "r")
+        fFile = open("templates/nginx/nginx_python_template.conf", "r")
     elif project_type == 'php':
-        fFile = open("nginx_php_template.conf", "r")
+        fFile = open("templates/nginx/nginx_php_template.conf", "r")
     fFile_new = open(pathConfNginx+project+".conf", "w")
     content = fFile.read()
     content = content.replace('{project}', project)
