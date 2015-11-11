@@ -33,3 +33,7 @@ def nginx_conf(domain, project, project_type):
     content = content.replace('{domain}', domain)
     fFile_new.write(content)
     print "Creada la configuracion de nginx"
+
+def nginx_ln(project):
+    comando = 'ln -s '+pathConfNginx+project+' '+pathConfNginx+'enlace'
+    os.system(comando)
