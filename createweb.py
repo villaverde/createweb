@@ -21,7 +21,7 @@ def main():
     while(project==""):
         project = raw_input("\033[92mNombre del proyecto:\033[0m ")
     while estrue:
-        project_type = raw_input("\033[92Tipo de proyecto\n"
+        project_type = raw_input("\033[92mTipo de proyecto\n"
                                  "--> python\n"
                                  "--> php\n"
                                  "Pon uno de los tipos permitidos:\033[0m ")
