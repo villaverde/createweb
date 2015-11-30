@@ -5,7 +5,7 @@
 #Scrip para configurar supervisor
 #
 
-
+import os
 
 
 #funcion que genera archivo supervisor en función de los parámetros indicados
@@ -13,13 +13,18 @@
 #devuelve un archivo de configuración de supervisor
 def supervisor_conf(project):
 	#parametros de configuración
-    path = ''
+    path = os.path.dirname('/etc/supervisor/conf.d/')
+    try:
+        os.stat(path)
+    except:
+        print "Error el direcotrio %s no exixta\nNo se seguira creando nada" % (path)
+        return
     fFile = open("templates/supervisor/supervisor_template.conf", "r")
-    fFile_new = open(path+project+".conf", "w")
+    fFile_new = open(path+'/'+project+".conf", "w")
     content = fFile.read()
     content = content.replace('{project}', project)
     fFile_new.write(content)
-    print "Creada la configuracion de supervisor\n"
+    print("Creada la configuracion de supervisor\n")
 
 
 #parametros de configuración

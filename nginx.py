@@ -35,6 +35,6 @@ def nginx_conf(domain, project, project_type):
     print("Creada la configuracion de nginx")
 
 def nginx_ln(project):
-    comando = 'ln -s '+pathConfNginx+'/sites-available/'+project+' '+pathConfNginx+'sites-enabled'+project
+    comando = 'ln -s '+pathConfNginx+'/sites-available/'+project+' '+pathConfNginx+'/sites-enabled/'+project
     os.system(comando)
     print("Creado en enlace simbolico de nginx para activar el virtualhost")
