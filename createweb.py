@@ -17,14 +17,14 @@ def main():
     project_type = ''
     estrue = True
     while(domain==""):
-        domain = raw_input("Dominio (Sin www): ")
+        domain = raw_input("\033[92mDominio (Sin www):\033[0m ")
     while(project==""):
-        project = raw_input("Nombre del proyecto: ")
+        project = raw_input("\033[92mNombre del proyecto:\033[0m ")
     while estrue:
-        project_type = raw_input("Tipo de proyecto\n"
+        project_type = raw_input("\033[92Tipo de proyecto\n"
                                  "--> python\n"
                                  "--> php\n"
-                                 "Pon uno de los tipos permitidos: ")
+                                 "Pon uno de los tipos permitidos:\033[0m ")
         if project_type == "php":
             estrue = False
         if project_type =="python":

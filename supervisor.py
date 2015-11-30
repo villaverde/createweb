@@ -17,14 +17,14 @@ def supervisor_conf(project):
     try:
         os.stat(path)
     except:
-        print "Error el direcotrio %s no exixta\nNo se seguira creando nada" % (path)
+        print("\033[91mError el direcotrio "+path+" no exixta\nNo se seguira creando nada\033[0m")
         return
     fFile = open("templates/supervisor/supervisor_template.conf", "r")
     fFile_new = open(path+'/'+project+".conf", "w")
     content = fFile.read()
     content = content.replace('{project}', project)
     fFile_new.write(content)
-    print("Creada la configuracion de supervisor\n")
+    print("\033[92mCreada la configuracion de supervisor\n\033[0m")
 
 
 #parametros de configuración

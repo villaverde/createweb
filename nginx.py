@@ -13,7 +13,7 @@ def nginx_main(domain,project,project_type):
     try:
         os.stat(pathConfNginx)
     except:
-        print "Error el direcotrio %s no exixta\nNo se seguira creando nada" % (pathConfNginx)
+        print "\033[91mError el direcotrio %s no exixta\nNo se seguira creando nada\033[0m" % (pathConfNginx)
         return
     nginx_conf(domain, project, project_type)
     nginx_ln(project)
@@ -32,9 +32,9 @@ def nginx_conf(domain, project, project_type):
     content = content.replace('{project}', project)
     content = content.replace('{domain}', domain)
     fFile_new.write(content)
-    print("Creada la configuracion de nginx")
+    print("\033[92mCreada la configuracion de nginx\033[92m")
 
 def nginx_ln(project):
     comando = 'ln -s '+pathConfNginx+'/sites-available/'+project+' '+pathConfNginx+'/sites-enabled/'+project
     os.system(comando)
-    print("Creado en enlace simbolico de nginx para activar el virtualhost")
+    print("\033[92mCreado en enlace simbolico de nginx para activar el virtualhost\033[92m")
