@@ -9,6 +9,7 @@ import optparse
 import sys
 from nginx import nginx_main
 from supervisor import supervisor_conf
+from user import user
 
 
 def main():
@@ -30,6 +31,8 @@ def main():
         if project_type =="python":
             estrue = False
 
+    #Llamamos al modulo de usuario
+    user(project)
     #Llamamos la modulo de nginx
     nginx_main(domain, project, project_type)
     #si el projecto esta en python, llamamos a supervisor para generar la configuracion
