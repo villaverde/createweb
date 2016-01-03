@@ -5,6 +5,8 @@
 #Script para añadir archivo de configuración ngix para aplicaciones python o php
 #
 import os
+import sys
+from there_application import which
 pathConfNginx=os.path.dirname('/etc/nginx/') #Path a la configuracion de nginx
 
 #Funcionar principal que se encarg de la configuracion de ngix
@@ -32,9 +34,17 @@ def nginx_conf(domain, project, project_type):
     content = content.replace('{project}', project)
     content = content.replace('{domain}', domain)
     fFile_new.write(content)
-    print("\033[92mCreada la configuracion de nginx\033[92m")
+    print("\033[92mCreada la configuracion de nginx\033[0m")
 
 def nginx_ln(project):
     comando = 'ln -s '+pathConfNginx+'/sites-available/'+project+'.conf '+pathConfNginx+'/sites-enabled/'+project+'.conf'
     os.system(comando)
-    print("\033[92mCreado en enlace simbolico de nginx para activar el virtualhost\033[92m")
+    print("\033[92mCreado en enlace simbolico de nginx para activar el virtualhost\033[0m")
+
+def nginx_check():
+    print('\033[92m Comprobando si esta instalado NGINX\033[0m')
+    if which('nginx') == None:
+        print('\033[91m  *  Nginx no esta instalado. Instalalo para poder seguir\033[0m')
+        sys.exit(0)
+    else:
+        print('\033[92m  * Nginx esta instalado\033[0m')

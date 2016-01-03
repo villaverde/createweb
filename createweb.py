@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #
@@ -7,7 +6,7 @@
 
 import optparse
 import sys
-from nginx import nginx_main
+from nginx import nginx_main, nginx_check
 from supervisor import supervisor_conf
 from user import user
 
@@ -30,7 +29,8 @@ def main():
             estrue = False
         if project_type =="python":
             estrue = False
-
+    #Comprobamos si nginx esta instalado
+    nginx_check()
     #Llamamos al modulo de usuario
     user(project)
     #Llamamos la modulo de nginx
