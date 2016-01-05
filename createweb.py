@@ -9,7 +9,7 @@ import sys
 from nginx import nginx_main, nginx_check
 from supervisor import supervisor_conf, supervisor_check
 from user import user
-from virtualenv import virtualenv_check
+from virtualenv import virtualenv_check, virtualenv
 
 
 def main():
@@ -32,14 +32,18 @@ def main():
             estrue = False
     #Comprobamos si nginx esta instalado
     nginx_check()
-
+    #Llamamos al modulo de usuario
+    user(project)
     if project_type == "python":
         #Comprobamos si esta instalado supervisor
         supervisor_check()
         #Comprobamos si esta instalado virtualenv o virtualenvwrapper
         virtualenv_check()
-    #Llamamos al modulo de usuario
-    user(project)
+        #Al ser python creamos una virtualenv para el proyecto
+        print('Ejecutamos el virtualenv')
+        virtualenv(project)
+
+
     #Llamamos la modulo de nginx
     nginx_main(domain, project, project_type)
     #si el projecto esta en python, llamamos a supervisor para generar la configuracion
