@@ -6,11 +6,15 @@
 #
 
 import os
-
+import sys
+from there_application import which
 
 #funcion que genera archivo supervisor en función de los parámetros indicados
 #parametros: project = nombre del proyecto
 #devuelve un archivo de configuración de supervisor
+
+
+
 def supervisor_conf(project):
 	#parametros de configuración
     path = os.path.dirname('/etc/supervisor/conf.d/')
@@ -26,8 +30,10 @@ def supervisor_conf(project):
     fFile_new.write(content)
     print("\033[92mCreada la configuracion de supervisor\n\033[0m")
 
-
-#parametros de configuración
-#project = 'juanillo'
-
-#supervisor_conf(project)
+def supervisor_check():
+    print('\033[92m Comprobando si esta instalado SUPERVISOR\033[0m')
+    if which('supervisorctl') == None:
+        print('\033[91m  * Supervisor no esta instalado. Instalalo para poder seguir\033[0m')
+        sys.exit(0)
+    else:
+        print('\033[92m  * Supervisor esta instalado\033[0m')

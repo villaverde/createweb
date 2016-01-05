@@ -7,7 +7,7 @@
 import optparse
 import sys
 from nginx import nginx_main, nginx_check
-from supervisor import supervisor_conf
+from supervisor import supervisor_conf, supervisor_check
 from user import user
 
 
@@ -31,6 +31,10 @@ def main():
             estrue = False
     #Comprobamos si nginx esta instalado
     nginx_check()
+
+    if project_type == "python":
+        #Comprobamos si esta instalado supervisor
+        supervisor_check()
     #Llamamos al modulo de usuario
     user(project)
     #Llamamos la modulo de nginx
