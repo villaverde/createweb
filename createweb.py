@@ -9,6 +9,7 @@ import sys
 from nginx import nginx_main, nginx_check
 from supervisor import supervisor_conf, supervisor_check
 from user import user
+from virtualenv import virtualenv_check
 
 
 def main():
@@ -35,6 +36,8 @@ def main():
     if project_type == "python":
         #Comprobamos si esta instalado supervisor
         supervisor_check()
+        #Comprobamos si esta instalado virtualenv o virtualenvwrapper
+        virtualenv_check()
     #Llamamos al modulo de usuario
     user(project)
     #Llamamos la modulo de nginx
