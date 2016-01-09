@@ -6,11 +6,17 @@
 
 import optparse
 import sys
+import os
 from nginx import nginx_main, nginx_check
 from supervisor import supervisor_conf, supervisor_check
 from user import user
 from virtualenv import virtualenv_check, virtualenv
 
+def dirweb(project):
+    print('\033[92 Creamos el directorio web\033[0m')
+    os.mkdir('/home/'+project+'/web')
+    os.system('chown '+project+' /home/'+project+'/web')
+    os.system('chgrp '+project+' /home/'+project+'/web')
 
 def main():
     domain = ""
@@ -34,13 +40,13 @@ def main():
     nginx_check()
     #Llamamos al modulo de usuario
     user(project)
+    dirweb(project)
     if project_type == "python":
         #Comprobamos si esta instalado supervisor
         supervisor_check()
         #Comprobamos si esta instalado virtualenv o virtualenvwrapper
         virtualenv_check()
         #Al ser python creamos una virtualenv para el proyecto
-        print('Ejecutamos el virtualenv')
         virtualenv(project)
 
 
